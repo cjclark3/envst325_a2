@@ -1,6 +1,7 @@
-install.packages(c("dplyr", "lubridate"))
+install.packages(c("dplyr", "lubridate","tidyverse"))
 library(dplyr)
 library(lubridate)
+library(tidyverse)
 
 streamH <- read.csv("/cloud/project/activtiy02/stream_gauge.csv")
 siteInfo <- read.csv("/cloud/project/activtiy02/site_info.csv")
@@ -50,7 +51,9 @@ flood_date <- floods_fj %>%
 
 #Question 1
 #Make a separate plot of the stream stage data for each river. 
-#In 3-4 sentences compare general patterns in the stream stage between sites around Hurricane Irma.
+
+ggplot(floods_fj, aes(x = dateF, y = gheight.ft)) +
+  geom_line()
 
 #Question 2
 #What was the earliest date of occurrence for each flood category in each river? 
