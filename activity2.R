@@ -83,11 +83,6 @@ action_date <- floods_fj %>%
   group_by(names) %>%
   summarise(action_date = min(dateF, na.rm = T))
 
-action_date <- floods_fj %>%
-  filter(gheight.ft >= action.ft) %>%
-  group_by(names) %>%
-  summarise(action_date = min(dateF, na.rm = T))
-
 moderate_date <- floods_fj %>%
   filter(gheight.ft >= moderate.ft) %>%
   group_by(names) %>%
@@ -100,7 +95,6 @@ major_date <- floods_fj %>%
 
 #Question 3
 #Which river had the highest stream stage above its listed height in the major flood category?
-
-
-#Question 4
-#Copy the url for your R script from GitHub and paste it here.
+max_height_diff <- floods_fj %>%
+  group_by(names) %>%
+  summarise(max_height_diff = max(gheight.ft - major.ft, na.rm = T))
