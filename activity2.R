@@ -51,17 +51,56 @@ flood_date <- floods_fj %>%
 
 #Question 1
 #Make a separate plot of the stream stage data for each river. 
+floods_fj_fish <- filter(floods_fj, siteID == 2256500)
+floods_fj_peace <- filter(floods_fj, siteID == 2295637)
+floods_fj_with <- filter(floods_fj, siteID == 2312000)
+floods_fj_santa <- filter(floods_fj, siteID == 2322500)
 
-ggplot(floods_fj, aes(x = dateF, y = gheight.ft)) +
-  geom_line()
+theme_set(theme_classic()) 
+
+ggplot(floods_fj_fish, aes(x = dateF, y = gheight.ft)) +
+  geom_line() +
+  labs(x = "Date", y = "Fisheating Creek Stream Height (ft)")
+
+ggplot(floods_fj_peace, aes(x = dateF, y = gheight.ft)) +
+  geom_line() +
+  labs(x = "Date", y = "Peace River Stream Height (ft)")
+
+ggplot(floods_fj_with, aes(x = dateF, y = gheight.ft)) +
+  geom_line() +
+  labs(x = "Date", y = "Withlacoochee River Stream Height (ft)")
+
+ggplot(floods_fj_santa, aes(x = dateF, y = gheight.ft)) +
+  geom_line() +
+  labs(x = "Date", y = "Santa Fe River Stream Height (ft)")
 
 #Question 2
 #What was the earliest date of occurrence for each flood category in each river? 
 #How quickly did changes in flood category occur for each river? 
 #Do you think there was enough time for advanced warning before a flood category changed?
-  
+action_date <- floods_fj %>%
+  filter(gheight.ft >= action.ft) %>%
+  group_by(names) %>%
+  summarise(action_date = min(dateF, na.rm = T))
+
+action_date <- floods_fj %>%
+  filter(gheight.ft >= action.ft) %>%
+  group_by(names) %>%
+  summarise(action_date = min(dateF, na.rm = T))
+
+moderate_date <- floods_fj %>%
+  filter(gheight.ft >= moderate.ft) %>%
+  group_by(names) %>%
+  summarise(moderate_date = min(dateF, na.rm = T))
+
+major_date <- floods_fj %>%
+  filter(gheight.ft >= major.ft) %>%
+  group_by(names) %>%
+  summarise(major_date = min(dateF, na.rm = T))
+
 #Question 3
 #Which river had the highest stream stage above its listed height in the major flood category?
-  
+
+
 #Question 4
 #Copy the url for your R script from GitHub and paste it here.
