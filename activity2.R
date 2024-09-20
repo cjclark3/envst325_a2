@@ -98,3 +98,4 @@ major_date <- floods_fj %>%
 max_height_diff <- floods_fj %>%
   group_by(names) %>%
   summarise(max_height_diff = max(gheight.ft - major.ft, na.rm = T))
+
